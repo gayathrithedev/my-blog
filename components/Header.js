@@ -1,97 +1,123 @@
-import {useState} from 'react'
+import {useState, useContext, useMemo} from 'react'
 // next
 import Link from 'next/link'
 import Image from 'next/image'
 
-// classnames
-import classNames from 'classnames';
+// context
+import {ThemeContext} from '../components/theme/ThemeProvider';
 
-// styles
-import styles from '../styles/Header.module.css';
-
-// icons
-import MenuIcon from '../assets/images/MenuIcon';
-import CloseIcon from '../assets/images/CloseIcon';
+// theme
+import {theme} from '../components/theme/theme';
 
 
-const Header = ({menu, setMenu}) => {
-
-  const [showMenu, setMenuVisible] = useState(false);
-
+const Header = () => {
+  const {mode, setMode} = useContext(ThemeContext);
   const menus = [
     {
-      name: 'Home',
-      url: '/',
-      as: '/'
+      name: 'G3',
+      url: '/'
     },
     {
       name: 'Blog',
-      url: 'blog',
-      as: 'blog'
+      url: 'blog'
     },
     {
-      name: 'My works',
-      url: 'myworks',
-      as: 'my-works'
-    },
-    {
-      name: 'Games',
-      url: 'games',
-      as: 'games'
-    },
-    {
-      name: 'About me',
-      url: 'aboutme',
-      as: 'about-me'
-    },
+      name: 'Work',
+      url: 'work'
+    }
   ]
 
+  const links = [
+    {
+      name: 'linkedin',
+      img: '/linkedin.svg',
+      url: 'https://linkedin.com/g3dev'
+    },
+    {
+      name: 'twitter',
+      img: '/twitter.svg',
+      url: 'https://twitter.com/g3_dev'
+    }
+  ]
+
+  const modeIcon = mode === 'dark' ? '/sun.svg' : '/moon.svg';
+
+  const styles = useMemo(() => getStyles(mode), [mode]);
+
   return (
-    <header className={styles.header}>
-      <p className={styles.brand}>
-        G3
-      </p>
-      <div className={styles.menuWrapper}>
-        <button className={styles.menuIcon} onClick={() => setMenuVisible(!showMenu)}>
-          {
-            showMenu ? <CloseIcon /> : <MenuIcon />
-          }
-        </button>
+    <header style={styles.header}>
+      <ul style={styles.navbar}>
         {
-          showMenu ? (
-            <ul className={styles.smNavbar}>
-              {
-                menus.map(({name,url, as}) => (
-                  <button key={name} onClick={() => setMenu(name)}>
-                    <li className={classNames(name === menu 
-                      ? styles.activeMenu 
-                      : styles.inActiveMenu, styles.smMenu)}>
-                      {name}
-                    </li>
-                  </button>
-                ))
-              }
-            </ul>
-          ) : null
-        }
-        
-      </div>
-      <ul className={styles.navbar}>
-        {
-          menus.map(({name,url, as}) => (
-            <button key={name} onClick={() => setMenu(name)}>
-              <li className={classNames(name === menu 
-                ? styles.activeMenu 
-                : styles.inActiveMenu, styles.menu)}>
+          menus.map(({name,url}) => (
+            <Link href={url} key={name} onClick={() => setMenu(name)}>
+              <li style={styles.menu}>
                 {name}
               </li>
-            </button>
+            </Link>
             
           ))
         }
       </ul>
+      <div style={styles.links}>
+        {
+          links.map(({img, url}) => (
+            <Link href={url}>
+              <div style={styles.link}>
+              <Image
+                src={img}
+                alt="links"
+                width={20}
+                height={20}
+                style={styles.link}
+              />
+              </div>
+            </Link>
+          ))
+        }
+        <button onClick={setMode} style={styles.link}>
+          <Image
+            src={modeIcon}
+            alt="theme"
+            width={20}
+            height={20}
+          />
+        </button>
+      </div>
     </header>
   )
 }
+
+const getStyles = (mode) => ({
+  header: {
+    padding: 30,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  navbar: {
+    flex: 6,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    listStyle: 'none',
+  },
+  links: {
+    flex: 4,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  menu: {
+    cursor: 'pointer',
+    color: theme[mode].textDark,
+    fontSize: 16,
+    padding: 10,
+  },
+  link: {
+    cursor: 'pointer',
+    padding: 10,
+  }
+})
 
 export default Header;

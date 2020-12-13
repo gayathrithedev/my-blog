@@ -11,13 +11,13 @@ import styles from '../styles/Home.module.css';
 
 // components
 import HomeC from '../components/Home';
-import Blog from '../components/Blog';
+import BlogC from '../components/Blog';
 import MyWorks from '../components/MyWorks';
 import Games from '../components/Games';
 import AboutMe from '../components/AboutMe';
 import ThemeProvider from '../components/theme/ThemeProvider';
 
-export default function Home() {
+export default function Blog() {
 
   return(
     <ThemeProvider>
@@ -28,7 +28,7 @@ export default function Home() {
       </Head>
       <Header />
       <main className={styles.main}>
-        <HomeC />
+        <BlogC />
       </main>
 
       <footer className={styles.footer}>

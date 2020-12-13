@@ -17,6 +17,10 @@ button {
   background-color: #ffffff;
 }
 
+ul {
+  padding-left: 0px;
+}
+
 p,
 ul {
   margin-block-start: 0px;
