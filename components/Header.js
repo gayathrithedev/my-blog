@@ -14,7 +14,7 @@ import MenuIcon from '../assets/images/MenuIcon';
 import CloseIcon from '../assets/images/CloseIcon';
 
 
-const Header = ({currentPage}) => {
+const Header = ({menu, setMenu}) => {
 
   const [showMenu, setMenuVisible] = useState(false);
 
@@ -62,14 +62,13 @@ const Header = ({currentPage}) => {
             <ul className={styles.smNavbar}>
               {
                 menus.map(({name,url, as}) => (
-                  <Link href={url} as={as} key={name}>
-                    <li className={classNames(name === currentPage 
+                  <button key={name} onClick={() => setMenu(name)}>
+                    <li className={classNames(name === menu 
                       ? styles.activeMenu 
                       : styles.inActiveMenu, styles.smMenu)}>
                       {name}
                     </li>
-                  </Link>
-                  
+                  </button>
                 ))
               }
             </ul>
@@ -80,13 +79,13 @@ const Header = ({currentPage}) => {
       <ul className={styles.navbar}>
         {
           menus.map(({name,url, as}) => (
-            <Link href={url} as={as} key={name}>
-              <li className={classNames(name === currentPage 
+            <button key={name} onClick={() => setMenu(name)}>
+              <li className={classNames(name === menu 
                 ? styles.activeMenu 
                 : styles.inActiveMenu, styles.menu)}>
                 {name}
               </li>
-            </Link>
+            </button>
             
           ))
         }

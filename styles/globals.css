@@ -11,6 +11,12 @@ a {
   text-decoration: none;
 }
 
+button {
+  outline: none;
+  border: none;
+  background-color: #ffffff;
+}
+
 p,
 ul {
   margin-block-start: 0px;
