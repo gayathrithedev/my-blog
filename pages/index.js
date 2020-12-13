@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 // next
 import Head from 'next/head'
@@ -39,7 +39,7 @@ export default function Home() {
   return(
     <div className={styles.container}>
       <Head>
-        <title>Gayathri Blog</title>
+        <title>Gayathri's Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header menu={menu} setMenu={setMenu} />
