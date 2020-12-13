@@ -4,14 +4,14 @@ import styles from '../styles/Home.module.css'
 //components
 import Header from '../components/Header';
 
-export default function Home() {
+export default function Games() {
   return (
     <div className={styles.container}>
       <Head>
         <title>Gayathri Blog</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header currentPage="Home" />
+      <Header currentPage="Games" />
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>

@@ -1,0 +1,133 @@
+.header {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.brand {
+  flex: 3;
+  text-align: center;
+  font-size: 7rem;
+  line-height: 1.15;
+  background: -webkit-linear-gradient(#22183b, #1f78f0, #9ca1fe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.navbar {
+  flex: 7;
+  align-items: center;
+  justify-content: center;
+  list-style-type: none;
+  display: flex;
+}
+
+.menuWrapper {
+  display: none;
+}
+
+.menu {
+  cursor: pointer;
+  padding: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin: 8px;
+}
+
+.activeMenu {
+  color: #ffffff;
+  background: #6889f6;
+  border-radius: 8px;
+  transition: background 2s ease-out;
+}
+
+.inActiveMenu {
+  color: #1f78f0;
+  background: #efefef;
+  border-radius: 8px;
+  transition: background 2s ease-out;
+}
+
+/* media query */
+@media screen and (max-width: 992px) {
+  .brand {
+    font-size: 5rem;
+  }
+  .menu {
+    font-size: small;
+  }
+  .menuWrapper {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    position: relative;
+  }
+  .menuWrapper {
+    flex: 8;
+    align-items: center;
+    justify-content: flex-end;
+    display: block;
+    display: flex;
+    flex-direction: column;
+  }
+  .menuIcon {
+    width: 50px;
+    height: 50px;
+    align-self: flex-end;
+    vertical-align: middle;
+    border: none;
+    background: #ffffff;
+    outline: none;
+  }
+
+  .smNavbar {
+    padding: 16px;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    box-shadow: 0px 7px 10px 0px #c4c4c4;
+    border-radius: 4px;
+    position: absolute;
+    top: 40px;
+    background: #ffffff;
+  }
+  .brand {
+    padding-top: 8px;
+    flex: 2;
+    font-size: 2rem;
+    align-self: flex-start;
+  }
+  .navbar {
+    display: none;
+  }
+  .smMenu {
+    margin: 8px;
+    width: 100%;
+    text-align: center;
+    padding: 8px;
+  }
+}
+
+/* background-image: linear-gradient(
+  to right top,
+  #22183b,
+  #2e2758,
+  #383778,
+  #3d499a,
+  #3b5cbe,
+  #4368cf,
+  #4a75e1,
+  #5182f3,
+  #6889f6,
+  #7c91f8,
+  #8d99fb,
+  #9ca1fe
+); */

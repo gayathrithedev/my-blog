@@ -11,6 +11,12 @@ a {
   text-decoration: none;
 }
 
+p,
+ul {
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+}
+
 * {
   box-sizing: border-box;
 }
