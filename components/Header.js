@@ -11,7 +11,7 @@ import {theme} from '../components/theme/theme';
 
 
 const Header = () => {
-  const {mode, setMode} = useContext(ThemeContext);
+  const {mode, setTheme} = useContext(ThemeContext);
   const menus = [
     {
       name: 'G3',
@@ -40,8 +40,6 @@ const Header = () => {
     }
   ]
 
-  const modeIcon = mode === 'dark' ? '/sun.svg' : '/moon.svg';
-
   const styles = useMemo(() => getStyles(mode), [mode]);
 
   return (
@@ -54,14 +52,13 @@ const Header = () => {
                 {name}
               </li>
             </Link>
-            
           ))
         }
       </ul>
       <div style={styles.links}>
         {
           links.map(({img, url}) => (
-            <Link href={url}>
+            <Link href={url} key={url}>
               <div style={styles.link}>
               <Image
                 src={img}
@@ -74,14 +71,32 @@ const Header = () => {
             </Link>
           ))
         }
-        <button onClick={setMode} style={styles.link}>
-          <Image
-            src={modeIcon}
-            alt="theme"
-            width={20}
-            height={20}
-          />
-        </button>
+        {
+          mode === 'dark' ? (
+          <button onClick={setTheme} style={styles.link}>
+            <Image
+              src="/sun.svg"
+              alt="theme"
+              width={20}
+              height={20}
+            />
+          </button>
+          ) : null
+        }
+
+        {
+          mode === 'light' ? (
+            <button onClick={setTheme} style={styles.link}>
+              <Image
+                src="/moon.svg"
+                alt="theme"
+                width={20}
+                height={20}
+              />
+            </button>
+          ) : null
+        }
+        
       </div>
     </header>
   )
